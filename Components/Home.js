@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, Modal, Button, Image, FlatList, Platform, TextInput, Pressable, ScrollView, TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, Modal, Button, Image, FlatList, Platform, TextInput, Pressable, Switch, ScrollView, TouchableOpacity } from 'react-native'
 import BlogCard from './BlogCard';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -27,8 +27,8 @@ export default function Home({ navigation, }) {
             .catch(error => {
                 console.error('Error fetching data:', error);
             });
- console.log(blogList)
-    },[blogList])
+        console.log(blogList)
+    },[])
 
     const handleSubmit = () => {
         const blogData = {
@@ -133,10 +133,37 @@ export default function Home({ navigation, }) {
                         <View>
                             <Image style={{ width: 70, height: 5, marginVertical: 20 }} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/25/25232.png' }} />
                         </View>
-                        <Text style={[styles.modalOptionText]}>Option 1</Text>
-                        <Text style={[styles.modalOptionText]}>Option 2</Text>
-                        <Text style={[styles.modalOptionText]}>Option 3</Text>
-                        <Text style={[styles.modalOptionText]}>Option 4</Text>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', width: '80%', justifyContent: 'space-between' }}>
+                            <Text style={[styles.modalOptionText]}>Option 1</Text>
+                            <Switch
+                                trackColor={{ false: 'gray', true: 'lightgreen' }}
+                                // thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                                ios_backgroundColor="black"
+                                // onValueChange={toggleSwitch}
+                                value={true}
+                            />
+                        </View>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', width: '80%', marginVertical:10, justifyContent: 'space-between' }}>
+                            <Text style={[styles.modalOptionText]}>Option 2</Text>
+                            <Switch
+                                trackColor={{ false: 'gray', true: 'lightgreen' }}
+                                // thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                                ios_backgroundColor="black"
+                                // onValueChange={toggleSwitch}
+                                value={true}
+                            />
+                        </View>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', width: '80%', marginBottom:50,justifyContent: 'space-between' }}>
+                            <Text style={[styles.modalOptionText]}>Options 3</Text>
+                            <Switch
+                                trackColor={{ false: 'gray', true: 'lightgreen' }}
+                                // thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+                                ios_backgroundColor="black"
+                                // onValueChange={toggleSwitch}
+                                value={false}
+                            />
+                        </View>
+                        
                         <Pressable style={[styles.closeButton]} onPress={() => setIsVisible(!isVisible)}>
                             <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
                                 Close
@@ -224,7 +251,6 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: 'bold',
         marginVertical: 20,
-        width: '100%',
         textAlign: 'center',
         paddingVertical: 5
     },
