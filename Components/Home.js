@@ -1,64 +1,96 @@
-import { View, Text, SafeAreaView, StyleSheet, Modal, Button, Image, FlatList, Platform, TextInput, Pressable, ScrollView } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, Modal, Button, Image, FlatList, Platform, TextInput, Pressable, ScrollView, TouchableOpacity } from 'react-native'
 import BlogCard from './BlogCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
-export default function Home({ navigation }) {
+
+export default function Home({ navigation, }) {
+
     const [isVisible, setIsVisible] = useState(false)
-    const [grid, setGrid] = useState(true)
+    const [grid, setGrid] = useState(false)
+    const [searchText, setSearchText] = useState("")
+    const [addForm, setAddForm] = useState(true)
+    const [formImage, setFormImage] = useState('');
+    const [formTitle, setFormTitle] = useState('');
+    const [formBody, setFormBody] = useState('');
 
-    const userDetails = [
-        {
-            image: 'https://revenuearchitects.com/wp-content/uploads/2017/02/Blog_pic-1030x584.png',
-            title: "Blog ",
-            body: "lorem33"
-        },
-        {
+    const [blogList, setBlogList] = useState([]);
 
-            image: 'https://circlein.com/wp-content/uploads/2021/07/Craig-Size-1.png',
-            title: "Blog 2",
-            body: "Ivysaur"
-        },
-        {
 
-            image: 'https://revenuearchitects.com/wp-content/uploads/2017/02/Blog_pic-1030x584.png',
-            title: "Blog 3",
-            body: "Ivysaur"
-        },
-        {
+    useEffect(() => {
+        // setBlogList(userDetails)
+        axios.get('http://localhost:8000/userDetails')
+            .then(response => {
+                setBlogList(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+ console.log(blogList)
+    },[blogList])
 
-            image: 'https://circlein.com/wp-content/uploads/2021/07/Craig-Size-1.png',
-            title: "Blog 4",
-            body: "Ivysaur"
-        },
-        {
-            image: 'https://revenuearchitects.com/wp-content/uploads/2017/02/Blog_pic-1030x584.png',
-            title: "Blog 5",
-            body: "Ivysaur"
-        },
-        {
-            image: 'https://circlein.com/wp-content/uploads/2021/07/Craig-Size-1.png',
-            title: "Blog 6",
-            body: "Ivysaur"
-        },
-    ]
+    const handleSubmit = () => {
+        const blogData = {
+            image: formImage,
+            title: formTitle,
+            body: formBody,
+        };
+
+
+        setFormImage('');
+        setFormTitle('');
+        setFormBody('');
+        setAddForm(true);
+
+        axios.post('http://localhost:8000/userDetails', blogData)
+            .then(response => {
+                setBlogList(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+
+    };
+
 
     function renderItem({ item }) {
+        if (searchText === '') {
+            return (
+                <View>
+                    <BlogCard title={item.title} body={item.body} image={item.image} navigation={navigation} grid={grid} />
+                </View>
 
-        return (
-            <View>
-                <BlogCard title={item.title} body={item.body} image={item.image} navigation={navigation} grid={grid} />
-            </View>
+            );
+        }
+        if (item.title.toLowerCase().includes(searchText.toLowerCase())) {
 
-        );
+            return (
+                <View>
+                    <BlogCard title={item.title} body={item.body} image={item.image} navigation={navigation} grid={grid} />
+                </View>
+
+            );
+        }
+
     }
 
     return (
         <SafeAreaView style={[styles.safeContainer]}>
             <View style={styles.headerContainer}>
-                <Image style={[styles.logoImage]} source={{ uri: 'https://seeklogo.com/images/O/ortto-data-platform-logo-835387DFBC-seeklogo.com.png' }} />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                    <Image style={[styles.logoImage]} source={{ uri: 'https://seeklogo.com/images/O/ortto-data-platform-logo-835387DFBC-seeklogo.com.png' }} />
+                    <Pressable onPress={() => setAddForm(!addForm)}>
+                        <Image style={[styles.filterImage, { width: 30, height: 30 }]} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/2661/2661440.png' }} />
+                    </Pressable>
+                </View>
                 <View style={[styles.textBox]}>
-                    <TextInput style={[styles.textInput]} placeholder='Search ....' />
+                    <TextInput style={[styles.textInput]}
+                        clearButtonMode='always'
+                        autoCapitalize='none'
+                        autoCorrect={false}
+                        onChangeText={(text) => setSearchText(text)}
+                        placeholder='Search ....' />
                     <Image style={[styles.searchIcon]} source={{ uri: 'https://cdn3.iconfinder.com/data/icons/feather-5/24/search-512.png' }} />
                 </View>
             </View>
@@ -82,14 +114,15 @@ export default function Home({ navigation }) {
 
             </View>
 
-            <View style={{paddingBottom:200,}}>
-                    <FlatList
-                        data={userDetails}
-                        renderItem={renderItem}
-                        numColumns={!grid?1:2}
-                        key={(!grid?'normal':'column')+'Key'}
-                        keyExtractor={(item, index) => index.toString()}
-                        />
+            <View style={{ paddingBottom: 200, }}>
+
+                <FlatList
+                    data={blogList}
+                    renderItem={renderItem}
+                    numColumns={!grid ? 1 : 2}
+                    key={(!grid ? 'normal' : 'column') + 'Key'}
+                    keyExtractor={(item, index) => index.toString()}
+                />
             </View>
             <Modal visible={isVisible}
                 transparent={true}
@@ -97,6 +130,9 @@ export default function Home({ navigation }) {
                 animationType='slide'>
                 <View style={[styles.modalContainer]}>
                     <View style={[styles.modalView]}>
+                        <View>
+                            <Image style={{ width: 70, height: 5, marginVertical: 20 }} source={{ uri: 'https://cdn-icons-png.flaticon.com/512/25/25232.png' }} />
+                        </View>
                         <Text style={[styles.modalOptionText]}>Option 1</Text>
                         <Text style={[styles.modalOptionText]}>Option 2</Text>
                         <Text style={[styles.modalOptionText]}>Option 3</Text>
@@ -110,11 +146,79 @@ export default function Home({ navigation }) {
                     </View>
                 </View>
             </Modal>
+
+
+
+
+            <Modal visible={!addForm}>
+
+                <View style={[styles.FormContainer]}>
+                    <Pressable style={{ alignItems: 'flex-end', width: '100%', marginVertical: 20 }} onPress={() => setAddForm(!addForm)}>
+                        <Image style={[styles.filterImage, { width: 50, height: 50 }]} source={{ uri: 'https://static.thenounproject.com/png/34085-200.png' }} />
+                    </Pressable>
+
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Image URL"
+                        value={formImage}
+                        autoCorrect={false}
+                        onChangeText={setFormImage}
+                        autoCapitalize="none"
+                    />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Title"
+                        value={formTitle}
+                        autoCapitalize='none'
+                        autoCorrect={false}
+                        onChangeText={setFormTitle}
+                    />
+                    <TextInput
+                        style={[styles.input, styles.bodyInput]}
+                        placeholder="Body"
+                        value={formBody}
+                        onChangeText={setFormBody}
+                        multiline={true}
+                        numberOfLines={4}
+                    />
+                    <Button title="Submit" onPress={handleSubmit} />
+
+
+                </View>
+            </Modal>
         </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create({
+    FormContainer: {
+        justifyContent: 'center',
+        width: "100%",
+        height: "100%",
+        paddingHorizontal: 20,
+        alignItems: 'center',
+        // backgroundColor: 'red'
+    },
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingHorizontal: 20,
+    },
+    input: {
+        width: '100%',
+        height: 40,
+        borderColor: '#ccc',
+        borderWidth: 1,
+        marginBottom: 10,
+        paddingHorizontal: 10,
+        fontSize: 18,
+    },
+    bodyInput: {
+        height: 120,
+        fontSize: 18,
+        textAlignVertical: 'top',
+    },
 
     modalOptionText: {
         fontSize: 26,
@@ -146,6 +250,8 @@ const styles = StyleSheet.create({
         width: "100%",
         height: '100%',
         // marginTop: 50,
+        backgroundColor: 'rgba(1, 1, 1, 0.25)',
+        borderRadius: 20,
         alignItems: 'center',
     },
     scrollViewContainer: {
@@ -208,7 +314,6 @@ const styles = StyleSheet.create({
         height: 40,
         paddingHorizontal: 20,
         fontSize: 20,
-        color: 'Black'
     },
     searchIcon: {
         width: 20,

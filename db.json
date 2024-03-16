@@ -1,0 +1,77 @@
+{
+  "userDetails": [
+    {
+      "image": "https://cdn.britannica.com/99/236599-050-1199AD2C/Mark-Zuckerberg-2019.jpg",
+      "title": "Newz",
+      "body": "lorem33 hello helloLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "image": "https://image.cnbcfm.com/api/v1/image/106689818-1599150563582-musk.jpg?v=1653411695",
+      "title": "News",
+      "body": "lorem33 hello helloLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "image": "https://imageio.forbes.com/specials-images/imageserve/65bad911b719375904ba4432/1x1-Bernard-Arnault-by-Chesnot-Getty-Images/0x0.jpg?format=jpg&height=1680&width=1680",
+      "title": "Data",
+      "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "image": "https://www.investopedia.com/thmb/kbcgFnkrL5R1Zxobyi5nHXzYe8Q=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1036094130-cf8da629f9b44c81a0b1398311ac5787.jpg",
+      "title": "Ai",
+      "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "image": "https://www.investopedia.com/thmb/LKanNptzaVQ5YxUUqwCZWCJMALc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-540179188-f820573a1328459cb5cedac011088d4c.jpg",
+      "title": "Blog",
+      "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "image": "https://cdn.siasat.com/wp-content/uploads/2021/10/Gautam-Adani.jpg",
+      "title": "Social Media",
+      "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "image": "https://circlein.com/wp-content/uploads/2021/07/Craig-Size-1.png",
+      "title": "User Data",
+      "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "image": "https://circlein.com/wp-content/uploads/2021/07/Craig-Size-1.png",
+      "title": "Company",
+      "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "image": "https://circlein.com/wp-content/uploads/2021/07/Craig-Size-1.png",
+      "title": "Client",
+      "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "image": "https://circlein.com/wp-content/uploads/2021/07/Craig-Size-1.png",
+      "title": "Python",
+      "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "image": "https://circlein.com/wp-content/uploads/2021/07/Craig-Size-1.png",
+      "title": "JavA",
+      "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    },
+    {
+      "id": "0758",
+      "image": "https://miro.medium.com/v2/resize:fit:1090/1*AjCE1JKxov-Bt0Yrovj05g.png",
+      "title": "Devin",
+      "body": "Ai Software"
+    },
+    {
+      "id": "7e7d",
+      "image": "https://miro.medium.com/v2/resize:fit:1090/1*AjCE1JKxov-Bt0Yrovj05g.png",
+      "title": "Ai Software",
+      "body": "Devin"
+    },
+    {
+      "id": "dddb",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/JSON_vector_logo.svg/1200px-JSON_vector_logo.svg.png",
+      "title": "Json",
+      "body": "JSON Object"
+    }
+  ]
+}

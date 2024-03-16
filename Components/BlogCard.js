@@ -4,34 +4,34 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 export default function BlogCard({ title, body, image, navigation, grid }) {
     const handlePress = () => {
         navigation.navigate('BlogDetail', { title, body, image });
-
     };
-    if (grid===true) {
-        
-        return(
-            <View>
-            <TouchableOpacity onPress={handlePress}>
-                <View style={styles.cardGrid}>
-                    <Image style={styles.cardGridImage} source={{ uri: image }} />
-                    <View style={styles.contentGridBox}>
-                        <Text style={{ fontSize: 28, fontWeight: 'bold', color: 'black', marginBottom: 10 }}>{title}</Text>
-                        <Text style={{ fontSize: 18, fontWeight: 'normal', color: 'black' }}>{body}</Text>
+
+if (grid === true) {
+    
+    return (
+        <View>
+                <TouchableOpacity onPress={handlePress}>
+                    <View style={styles.cardGrid}>
+                        <Image style={styles.cardGridImage} source={{ uri: image }} />
+                        <View style={styles.contentGridBox}>
+                            <Text style={{ fontSize: 28, fontWeight: 'bold', color: 'black', marginBottom: 10 }}>{`${title.substring(0, 6)}...`}</Text>
+                            <Text style={{ fontSize: 18, fontWeight: 'normal', color: 'black' }}>{`${body.substring(0, 12)}...`}</Text>
+                        </View>
                     </View>
-                </View>
-            </TouchableOpacity>
+                </TouchableOpacity>
 
-
-        </View>
+          
+            </View>
         )
     } else {
-        return(
+        return (
             <View>
                 <TouchableOpacity onPress={handlePress}>
                     <View style={styles.card}>
                         <Image style={styles.cardImage} source={{ uri: image }} />
                         <View style={styles.contentBox}>
                             <Text style={{ fontSize: 28, fontWeight: 'bold', color: 'black', marginBottom: 10 }}>{title}</Text>
-                            <Text style={{ fontSize: 18, fontWeight: 'normal', color: 'black' }}>{body}</Text>
+                            <Text style={{ fontSize: 18, fontWeight: 'normal', color: 'black' }}>{`${body.substring(0, 12)}...`}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -46,13 +46,13 @@ const styles = StyleSheet.create({
 
     cardGrid: {
         width: 180,
-        height: 200,
+        height: 250,
         backgroundColor: 'white',
         borderRadius: 20,
         marginHorizontal: 18,
         marginVertical: 10,
         paddingVertical: 20,
-        justifyContent: 'center',
+        justifyContent: 'center', 
         alignItems: 'center',
         borderWidth: .3,
         borderColor: 'gray',
@@ -88,18 +88,18 @@ const styles = StyleSheet.create({
         padding: 15,
     },
     cardImage: {
-        resizeMode: 'contain',
-        borderRadius: 50,
+        resizeMode: 'cover',
+        borderRadius: 100,
         marginHorizontal: 20,
         width: 100,
         height: 100,
     },
     cardGridImage: {
-        resizeMode: 'contain',
+        resizeMode: 'cover',
         // backgroundColor:'yellow',
         borderRadius: 50,
         width: 100,
-        height: 80,
+        height: 100,
     },
     contentBox: {
         justifyContent: 'center',

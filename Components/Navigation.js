@@ -9,9 +9,9 @@ export default function Navigation() {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name='Home' component={Home} />
-                <Stack.Screen name='blogDetail' component={BlogDetail} />
-            </Stack.Navigator>
+                <Stack.Screen name='Home'  component={Home} />
+                <Stack.Screen name='blogDetail'  component={BlogDetail} />
+            </Stack.Navigator> 
         </NavigationContainer>
 
     )
